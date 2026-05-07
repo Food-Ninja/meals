@@ -126,8 +126,8 @@ As long as you:
     <!-- http://www.ease-crc.org/ont/meals#followedBy -->
 
     <owl:ObjectProperty rdf:about="http://www.ease-crc.org/ont/meals#followedBy">
-        <rdfs:domain rdf:resource="http://www.ease-crc.org/ont/meals#Motion"/>
-        <rdfs:range rdf:resource="http://www.ease-crc.org/ont/meals#Motion"/>
+        <rdfs:domain rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
+        <rdfs:range rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
     </owl:ObjectProperty>
     
 
@@ -162,14 +162,6 @@ As long as you:
     
 
 
-    <!-- http://www.ease-crc.org/ont/meals#hasMotion -->
-
-    <owl:ObjectProperty rdf:about="http://www.ease-crc.org/ont/meals#hasMotion">
-        <rdfs:range rdf:resource="http://www.ease-crc.org/ont/meals#Motion"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.ease-crc.org/ont/meals#hasParameter -->
 
     <owl:ObjectProperty rdf:about="http://www.ease-crc.org/ont/meals#hasParameter"/>
@@ -200,6 +192,14 @@ As long as you:
 
     <owl:ObjectProperty rdf:about="http://www.ease-crc.org/ont/meals#partOf">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/meals#requiresMotion -->
+
+    <owl:ObjectProperty rdf:about="http://www.ease-crc.org/ont/meals#requiresMotion">
+        <rdfs:range rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
     </owl:ObjectProperty>
     
 
@@ -294,7 +294,7 @@ As long as you:
     <!-- http://www.ease-crc.org/ont/meals#motion_parameters -->
 
     <owl:DatatypeProperty rdf:about="http://www.ease-crc.org/ont/meals#motion_parameters">
-        <rdfs:domain rdf:resource="http://www.ease-crc.org/ont/meals#Motion"/>
+        <rdfs:domain rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
         <rdfs:label xml:lang="en">motion parameters</rdfs:label>
     </owl:DatatypeProperty>
@@ -792,7 +792,7 @@ As long as you:
                                 <owl:allValuesFrom>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#classifies"/>
-                                        <owl:allValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Spoon"/>
+                                        <owl:allValuesFrom rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Spoon"/>
                                     </owl:Restriction>
                                 </owl:allValuesFrom>
                             </owl:Restriction>
@@ -954,7 +954,7 @@ As long as you:
                                 <owl:allValuesFrom>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#classifies"/>
-                                        <owl:allValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Spoon"/>
+                                        <owl:allValuesFrom rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Spoon"/>
                                     </owl:Restriction>
                                 </owl:allValuesFrom>
                             </owl:Restriction>
@@ -1055,7 +1055,7 @@ As long as you:
                                 <owl:allValuesFrom>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#classifies"/>
-                                        <owl:allValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Spoon"/>
+                                        <owl:allValuesFrom rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Spoon"/>
                                     </owl:Restriction>
                                 </owl:allValuesFrom>
                             </owl:Restriction>
@@ -1617,7 +1617,7 @@ As long as you:
                                 <owl:allValuesFrom>
                                     <owl:Restriction>
                                         <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#classifies"/>
-                                        <owl:allValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Spoon"/>
+                                        <owl:allValuesFrom rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Spoon"/>
                                     </owl:Restriction>
                                 </owl:allValuesFrom>
                             </owl:Restriction>
@@ -2614,6 +2614,9 @@ As long as you:
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/SOMA.owl#Spoon">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Cutlery"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#CoreRemovalTool"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+        <rdfs:comment xml:lang="en">Spoon to scoop out sth,</rdfs:comment>
     </owl:Class>
     
 
@@ -2632,8 +2635,20 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingTask"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
                 <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">add</verb>
@@ -2647,8 +2662,20 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Adding"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
                 <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">admix</verb>
@@ -2662,8 +2689,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">aggregate</verb>
@@ -2677,8 +2717,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">amalgamate</verb>
@@ -2727,8 +2780,20 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingTask"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Whisk"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
                 <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">beat</verb>
@@ -2751,8 +2816,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">blend</verb>
@@ -2842,58 +2920,6 @@ As long as you:
     
 
 
-    <!-- http://www.ease-crc.org/ont/meals#CircularDivingToInnerMotion -->
-
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#CircularDivingToInnerMotion">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_lower_bound_relative"/>
-                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</owl:hasValue>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_upper_bound_relative"/>
-                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</owl:hasValue>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#height_increment"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label xml:lang="en">circular diving to inner motion</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://www.ease-crc.org/ont/meals#CircularMotion -->
-
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#CircularMotion">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_lower_bound_relative"/>
-                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</owl:hasValue>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_upper_bound_relative"/>
-                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</owl:hasValue>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:label xml:lang="en">circular motion</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://www.ease-crc.org/ont/meals#Closing -->
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Closing">
@@ -2909,8 +2935,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">coalesce</verb>
@@ -2933,8 +2972,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">combine</verb>
@@ -2948,8 +3000,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">commingle</verb>
@@ -2963,20 +3028,24 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">commix</verb>
-    </owl:Class>
-    
-
-
-    <!-- http://www.ease-crc.org/ont/meals#CompoundMotion -->
-
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#CompoundMotion">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
-        <rdfs:label xml:lang="en">compound motion</rdfs:label>
     </owl:Class>
     
 
@@ -2987,8 +3056,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">compound</verb>
@@ -3002,8 +3084,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">concoct</verb>
@@ -3017,8 +3112,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">conflate</verb>
@@ -3354,45 +3462,22 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingTask"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
                 <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://www.ease-crc.org/ont/meals#FoldingMotion -->
-
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#FoldingMotion">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_lower_bound_relative"/>
-                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</owl:hasValue>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_upper_bound_relative"/>
-                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</owl:hasValue>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#folding_rotation_shift"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">90</owl:hasValue>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#orbital"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#repetitive_folding_rotation_shift"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">22.5</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label xml:lang="en">folding motion</rdfs:label>
     </owl:Class>
     
 
@@ -3455,8 +3540,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">fuse</verb>
@@ -3488,8 +3586,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingTask"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#orbital"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">group</verb>
@@ -3567,35 +3678,6 @@ As long as you:
     
 
 
-    <!-- http://www.ease-crc.org/ont/meals#HorizontalEllipticalMotion -->
-
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#HorizontalEllipticalMotion">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
-        <rdfs:subClassOf>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_lower_bound_relative"/>
-                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</owl:hasValue>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_upper_bound_relative"/>
-                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</owl:hasValue>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#ellipse_shift"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.04</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:label xml:lang="en">horizontal elliptical motion</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://www.ease-crc.org/ont/meals#Inedible -->
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Inedible">
@@ -3619,8 +3701,20 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Adding"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
                 <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">integrate</verb>
@@ -3634,8 +3728,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">intermix</verb>
@@ -3756,8 +3863,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">meld</verb>
@@ -3778,6 +3898,25 @@ As long as you:
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Merging">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <verb xml:lang="en">merge</verb>
     </owl:Class>
     
@@ -3807,8 +3946,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">mingle</verb>
@@ -3820,6 +3972,7 @@ As long as you:
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Mixer">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#ElectricTool"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
     </owl:Class>
     
 
@@ -3830,8 +3983,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingTask"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">mix</verb>
@@ -3847,10 +4013,18 @@ As long as you:
     
 
 
+    <!-- http://www.ease-crc.org/ont/meals#MixingDuration -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#MixingDuration">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Parameter"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.ease-crc.org/ont/meals#MixingMotion -->
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#MixingMotion">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Motion"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Parameter"/>
         <rdfs:label xml:lang="en">mixing motion</rdfs:label>
     </owl:Class>
     
@@ -3860,6 +4034,14 @@ As long as you:
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#MixingTask">
         <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/meals#MixingTool -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#MixingTool">
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Tool"/>
     </owl:Class>
     
 
@@ -3877,15 +4059,6 @@ As long as you:
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Moist">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Consistency"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.ease-crc.org/ont/meals#Motion -->
-
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Motion">
-        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Parameter"/>
-        <rdfs:label xml:lang="en">motion</rdfs:label>
     </owl:Class>
     
 
@@ -4586,8 +4759,8 @@ As long as you:
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Soaking">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#PreparationTask"/>
-        <verb xml:lang="en">soak</verb>
         <verb>infuse</verb>
+        <verb xml:lang="en">soak</verb>
     </owl:Class>
     
 
@@ -4606,15 +4779,6 @@ As long as you:
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Splashing">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Pouring"/>
         <verb xml:lang="en">splash</verb>
-    </owl:Class>
-    
-
-
-    <!-- http://www.ease-crc.org/ont/meals#Spoon -->
-
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Spoon">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#CoreRemovalTool"/>
-        <rdfs:comment xml:lang="en">Spoon to scoop out sth,</rdfs:comment>
     </owl:Class>
     
 
@@ -4711,8 +4875,21 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#orbital"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">stir</verb>
@@ -4791,14 +4968,36 @@ As long as you:
     
 
 
+    <!-- http://www.ease-crc.org/ont/meals#Transferring -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Transferring">
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Arranging"/>
+        <verb>transfer</verb>
+    </owl:Class>
+    
+
+
     <!-- http://www.ease-crc.org/ont/meals#Unifying -->
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Unifying">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Mixing"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
-                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">unify</verb>
@@ -4855,28 +5054,11 @@ As long as you:
     
 
 
-    <!-- http://www.ease-crc.org/ont/meals#WhirlstormThenCircularDivingToInner -->
-
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#WhirlstormThenCircularDivingToInner">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#CompoundMotion"/>
-        <rdfs:label rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString">whirlstorm then circular to diving inner</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://www.ease-crc.org/ont/meals#WhirlstormThenHorizontal -->
-
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#WhirlstormThenHorizontal">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#CompoundMotion"/>
-        <rdfs:label rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString">whirlstorm then horizontal</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://www.ease-crc.org/ont/meals#Whisk -->
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Whisk">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Tool"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingTool"/>
         <rdfs:label xml:lang="en">whisk</rdfs:label>
     </owl:Class>
     
@@ -4888,8 +5070,20 @@ As long as you:
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingTask"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#affordsTrigger"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Whisk"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#hasInputObject"/>
                 <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#requiresMotion"/>
+                <owl:someValuesFrom rdf:resource="http://www.ease-crc.org/ont/meals#spiral"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <verb xml:lang="en">whisk</verb>
@@ -4901,6 +5095,29 @@ As long as you:
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#WoodenSpoon">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Spoon"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/meals#circular -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#circular">
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_lower_bound_relative"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_upper_bound_relative"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">circular motion</rdfs:label>
     </owl:Class>
     
 
@@ -4931,6 +5148,70 @@ As long as you:
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="en">drink</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/meals#elliptical -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#elliptical">
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_lower_bound_relative"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_upper_bound_relative"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#ellipse_shift"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.04</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">elliptical motion</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/meals#folding -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#folding">
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_lower_bound_relative"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</owl:hasValue>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#radius_upper_bound_relative"/>
+                        <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#folding_rotation_shift"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">90</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/meals#repetitive_folding_rotation_shift"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">22.5</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">folding motion</rdfs:label>
     </owl:Class>
     
 
@@ -4981,6 +5262,15 @@ As long as you:
     
 
 
+    <!-- http://www.ease-crc.org/ont/meals#orbital -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#orbital">
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
+        <rdfs:label>orbital motion</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://www.ease-crc.org/ont/meals#puree -->
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#puree">
@@ -5008,6 +5298,15 @@ As long as you:
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:label xml:lang="en">smoothie</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/meals#spiral -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#spiral">
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#MixingMotion"/>
+        <rdfs:label>spiral motion</rdfs:label>
     </owl:Class>
     
 
@@ -5349,7 +5648,6 @@ As long as you:
 
     <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Parameter">
         <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept"/>
-        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
     </owl:Class>
     
 
