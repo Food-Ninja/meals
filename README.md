@@ -1,6 +1,7 @@
 # The Meals Knowledge Base
 
-This is the main repository storing the meals knowledge base. If you are looking for the API, please check it out here: https://knowledgedb.informatik.uni-bremen.de/mealprepDB/#/
+This is the main repository storing the meals knowledge base. If you are looking for the API, please check it out here: https://knowledgedb.informatik.uni-bremen.de/mealprepDB/#/ <br>
+There are example queries in the example queries folder to try out some queries a robot would pose to the knowledge base. 
 
 If you are searching for the project website with description (mostly based on the prior version focusing only on describing cutting actions), this is here: https://food-ninja.github.io/WebKat-MealRobot/ <br>
 If you are searching for the recipe to action parameters example, this is here: https://vrb.ease-crc.org/explore-labs/meal-preparation-laboratory/ <br>
