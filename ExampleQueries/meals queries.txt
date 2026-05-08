@@ -1,0 +1,28 @@
+meals queries
+
+-------------query for motion
+
+prefix meals: <http://www.ease-crc.org/ont/meals#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+
+select ?motion where {
+  meals:Adding rdfs:subClassOf ?node.
+  ?node owl:onProperty meals:requiresMotion.
+  ?node owl:someValuesFrom ?motion.
+} 
+
+
+--------------query for tool
+
+
+prefix meals: <http://www.ease-crc.org/ont/meals#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix SOMA: <http://www.ease-crc.org/ont/SOMA.owl#>
+
+select ?tool where {
+  meals:Adding rdfs:subClassOf ?node.
+  ?node owl:onProperty SOMA:affordsTrigger.
+  ?node owl:someValuesFrom ?tool.
+} 
