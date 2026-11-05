@@ -3416,6 +3416,7 @@ As long as you:
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Filleting">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#FoodPreparationTask"/>
+        <verb>fillet</verb>
     </owl:Class>
     
 
@@ -3833,6 +3834,15 @@ As long as you:
     
 
 
+    <!-- http://www.ease-crc.org/ont/meals#Leaving -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Leaving">
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#Placing"/>
+        <verb>leave</verb>
+    </owl:Class>
+    
+
+
     <!-- http://www.ease-crc.org/ont/meals#Liquid -->
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Liquid">
@@ -4200,6 +4210,7 @@ As long as you:
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/meals#Peeling">
         <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/meals#FoodPreparationTask"/>
+        <verb>peel</verb>
     </owl:Class>
     
 
