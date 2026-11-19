@@ -7,7 +7,7 @@ If you are searching for the project website with description (mostly based on t
 If you are searching for the recipe to action parameters example, this is here: https://vrb.ease-crc.org/explore-labs/meal-preparation-laboratory/ <br>
 Finally, if you are searching for the robot simulation, this is here: https://vrb.ease-crc.org/explore-labs/action-cores/
 
-The meals knowledge base connects the Recipe1M dataset to an ingredient classification based on the FoodOn ontology, linking to task-relevant object properties, tools, and actions that can be translated to motion parameters.
+The meals knowledge base connects a subset of the Recipe1M dataset to an ingredient classification based on the FoodOn ontology, linking to task-relevant object properties, tools, and actions that can be translated to motion parameters.
 More information on the motivation behind the model of the graph can be found here:
 ```bash
 @article{kuempel2025cookingactions,
